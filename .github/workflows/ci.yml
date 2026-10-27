@@ -20,13 +20,24 @@ jobs:
           node-version: "26"
           cache: "pnpm"
 
-      # Устанавливаем pnpm (без жёсткой версии — возьмёт совместимую)
+      # Ставим последнюю стабильную версию pnpm (без жёсткой привязки)
       - name: Setup pnpm
         uses: pnpm/setup@v3
         with:
           run-install: false
 
-      # Проверяем, что pnpm действительно доступен
+      # Явно добавляем pnpm в PATH (страховка для GitHub Actions)
+      - name: Add pnpm to PATH
+        run: |
+          echo "$HOME/pnpm" >> $GITHUB_PATH
+          mkdir -p "$HOME/pnpm"
+          # Если pnpm уже установлен в другом месте — находим и добавляем
+          if command -v pnpm >/dev/null 2>&1; then
+            PNPM_BIN=$(which pnpm)
+            PNPM_DIR=$(dirname "$PNPM_BIN")
+            echo "$PNPM_DIR" >> $GITHUB_PATH
+          fi
+
       - name: Verify pnpm is available
         run: pnpm --version
 
