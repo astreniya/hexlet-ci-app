@@ -20,15 +20,20 @@ jobs:
           node-version: "26"
           cache: "pnpm"
 
-      # Важно: сначала ставим pnpm, потом убеждаемся, что он в PATH
       - name: Setup pnpm
         uses: pnpm/setup@v3
         with:
           version: "12.6.0"
-          run-install: false  # не запускаем install здесь, мы делаем это через make
+          run-install: false
 
-      # Дополнительная страховка: проверяем, что pnpm виден
       - name: Verify pnpm is available
         run: pnpm --version
 
-      - name:
+      - name: Install dependencies
+        run: make setup
+
+      - name: Lint
+        run: make lint
+
+      - name: Test
+        run: make test
