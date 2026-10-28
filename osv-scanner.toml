@@ -324,4 +324,4 @@ ids = [
   "GHSA-4g23-2xm8-66gc",
   "GHSA-g73g-hqqh-jr95"
 ]
-reason = "временное использование nodemailer@9.x до миграции на v10"
+reason = "временное использование nodemailer@9.x до миграции на v10.x"
