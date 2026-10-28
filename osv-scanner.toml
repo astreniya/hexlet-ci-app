@@ -314,3 +314,14 @@ reason = "Обновление лока не закрывает находку, 
 id = "GHSA-xw65-4hp5-5hc7"
 ignoreUntil = 2026-11-24
 reason = "Обновление лока не закрывает находку, исправления в зависимости ещё нет. Срок записи месяц."
+
+[[filter]]
+ecosystem = "npm"
+package = "nodemailer"
+versions = ["9.0.1"]
+ids = [
+  "GHSA-4ffr-jq9g-5ffx",
+  "GHSA-4g23-2xm8-66gc",
+  "GHSA-g73g-hqqh-jr95"
+]
+reason = "временное использование nodemailer@9.x до миграции на v10"
